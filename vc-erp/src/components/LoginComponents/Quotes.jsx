@@ -2,21 +2,25 @@ import translateQuote from "../../api/quotes";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Quotes = () => {
     const [quote, setQuote] = useState({
         quote: "",
         author: "",
     });
+    const initialized = useRef(false);
 
     useEffect(() => {
-        translateQuote().then((res) => {
-            setQuote({
-                quote: res.quote,
-                author: res.author,
+        if (!initialized.current) {
+            initialized.current = true;
+            translateQuote().then((res) => {
+                setQuote({
+                    quote: res.quote,
+                    author: res.author,
+                });
             });
-        });
+        }
     }, [])
 
     return (
