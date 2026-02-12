@@ -1,0 +1,87 @@
+import * as React from 'react';
+import MuiCard from '@mui/material/Card';
+import { Box, Button, CardContent, FormControl, styled, TextField, Typography } from '@mui/material';
+
+const Card = styled(MuiCard)({
+    maxWidth: 345,
+    margin: 'auto',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    '&:hover': {
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    },
+})
+
+export default function SignInCard() {
+    const [usernameError, setUsernameError] = React.useState('');
+    const [passwordError, setPasswordError] = React.useState('');
+    const [usernameErrorMessage, setUsernameErrorMessage] = React.useState('');
+    const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+    const handleSubmit = (event) => {
+        if (usernameError || passwordError) {
+            event.preventDefault();
+            return;
+        }
+
+    const data = new FormData(event.currentTarget);
+    const username = data.get('username');
+    const password = data.get('password');
+
+    console.log(username, password);
+
+    return (
+        <Card variant='outlined'>
+            <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+            >
+                <FormControl>
+                    <TextField
+                        required
+                        id="username"
+                        name="username"
+                        label="Username"
+                        autoComplete="username"
+                        autoFocus
+                        error={!!usernameError}
+                        helperText={usernameErrorMessage}
+                    />
+                </FormControl>
+                <FormControl>
+                    <TextField
+                        required
+                        id="password"
+                        name="password"
+                        label="Password"
+                        autoComplete="password"
+                        autoFocus
+                        error={!!passwordError}
+                        helperText={passwordErrorMessage}
+                    />
+                </FormControl>
+                <FormControl>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Sign In
+                    </Button>
+                </FormControl>
+            </Box>
+        </Card>
+        )
+    }
+
+}
