@@ -12,8 +12,8 @@ const Card = styled(MuiCard)({
 })
 
 export default function SignInCard() {
-    const [usernameError, setUsernameError] = React.useState('');
-    const [passwordError, setPasswordError] = React.useState('');
+    const [usernameError, setUsernameError] = React.useState(false);
+    const [passwordError, setPasswordError] = React.useState(false);
     const [usernameErrorMessage, setUsernameErrorMessage] = React.useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
     const [open, setOpen] = React.useState(false);
@@ -31,8 +31,9 @@ export default function SignInCard() {
             event.preventDefault();
             return;
         }
+    }
 
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(HTMLFormElement.currentTarget);
     const username = data.get('username');
     const password = data.get('password');
 
@@ -44,6 +45,12 @@ export default function SignInCard() {
                 component="form"
                 noValidate
                 onSubmit={handleSubmit}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    gap: '1rem',
+                }}
             >
                 <FormControl>
                     <TextField
@@ -81,7 +88,5 @@ export default function SignInCard() {
                 </FormControl>
             </Box>
         </Card>
-        )
-    }
-
+        );
 }
