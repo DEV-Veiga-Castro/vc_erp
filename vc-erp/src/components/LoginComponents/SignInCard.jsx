@@ -3,7 +3,7 @@ import MuiCard from '@mui/material/Card';
 import { Box, Button, CardContent, FormControl, styled, TextField, Typography } from '@mui/material';
 
 const Card = styled(MuiCard)({
-    maxWidth: 345,
+    maxWidth: 450,
     margin: 'auto',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     '&:hover': {
@@ -40,7 +40,14 @@ export default function SignInCard() {
     console.log(username, password);
 
     return (
-        <Card variant='outlined'>
+        <Card sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'transparent',
+            border: 'none',
+        }}>
             <Box
                 component="form"
                 noValidate
@@ -48,7 +55,7 @@ export default function SignInCard() {
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    width: '100%',
+                    width: '100vw',
                     gap: '1rem',
                 }}
             >
@@ -57,7 +64,7 @@ export default function SignInCard() {
                         required
                         id="username"
                         name="username"
-                        label="Username"
+                        label="Usuário"
                         autoComplete="username"
                         autoFocus
                         error={!!usernameError}
@@ -69,11 +76,18 @@ export default function SignInCard() {
                         required
                         id="password"
                         name="password"
-                        label="Password"
+                        label="Senha"
                         autoComplete="password"
                         autoFocus
                         error={!!passwordError}
                         helperText={passwordErrorMessage}
+                        sx={{
+                            backgroundColor: 'white',
+                            borderRadius: '1rem',
+                            border: 'none',
+                            outline: 'none',
+                            textDecorationColor: 'black'
+                        }}
                     />
                 </FormControl>
                 <FormControl>

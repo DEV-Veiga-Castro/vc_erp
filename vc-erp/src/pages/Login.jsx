@@ -11,9 +11,8 @@ export default function Login(){
                 [
                     {
                         justifyContent: 'center',
-                        height: 'calc((1 - var(--template-frame-height, 0)) * 100%)',
-                        marginTop: 'max(40px - var(--template-frame-height, 0px), 0px)',
-                        minHeight: '100%',
+                        height: '100vh',
+                        minHeight: '100vh',
                     },
                 ]
             }
@@ -26,8 +25,8 @@ export default function Login(){
                         {
                             justifyContent: 'center',
                             alignItems: 'center',
-                            height: '100%',
-                            width: '100%',
+                            height: '100vh',
+                            width: '100vw',
                         },
                         (theme) => ({
                             [theme.breakpoints.down('md')]: {
@@ -37,8 +36,25 @@ export default function Login(){
                     ]
                 }
             >
-                <Quotes />
-                <SignInCard />
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',
+                    width: '30vw',
+                    marginLeft: '10vw',
+                }}>
+                    <Quotes />
+                </Box>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',
+                    width: '100vw',
+                }}>
+                    <SignInCard />
+                </Box>
             </Stack>
         </Stack>
     )
