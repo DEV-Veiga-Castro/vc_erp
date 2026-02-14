@@ -1,5 +1,6 @@
-import { Box, Button, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
+import "../index.css"
+import "./style.css"
 
 export default function Home() {
     const [time, setTime] = useState(new Date().toLocaleTimeString())
@@ -12,27 +13,10 @@ export default function Home() {
     }, [])
 
     const testElement = (
-        <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            width: '100vw',
-        }}>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '1rem',
-            }}>
-                <Typography variant="h2">Hello, World!</Typography>
-                <Typography variant="h6">São: {time}</Typography>
-            </Box>
-            <Button variant="contained" color="primary" onClick={() => window.location.href = "/login"}>
-                Login
-            </Button>
-        </Box>
+        <div className="content">
+            <h1 className="time">Hello, World!</h1>
+            <h2 className="time">{time}</h2>
+        </div>
     )
     return testElement
 }
